@@ -1,0 +1,23 @@
+HW1
+
+3. The question asks given two bags, one having two black balls and one having one black ball and one white ball, what are the chances of picking a second black ball given picking a black ball on the first try. Let the 2 black ball bag be B1 and the other be B2. Essentially, it's asking the probability of picking B1 given the probability of picking a black ball (since there's no chance of picking a black ball on the second try picking from B2). So the probability we're after is P(B1|b). By the Bayes rule: P(B1|b) = ((P(b|B1)P(B1))/P(b). P(b|B1) is 1 since there are only black balls in B1. P(B1) is 1/2 since there are equal chances of picking between two bags picking one. The probability of picking a black ball within the first try is 3/4 since there are 4 balls and 3 are black. So:
+= (1*1/2)/(3/4) = (1/2)/(3/4) = (4/3)*(1/2) = 2/3
+
+
+Consider a sample of 10 marbles drawn from a bin containing red and green marbles. The probability that any marble we draw is red is mu = 0.55 (indp, w/ replacement).
+
+4. In the first sample (of 10 marbles), the probability that we draw no red marbles is (1 - 0.55)^10, where (1-0.55) is the probability of drawing a non-red marble. This is 3.405062e-4.
+
+5. Now we have 1000 samples and we want to find the probability that at least 1 sample draws no red marbles. the probability of a non-red sample is as listed at 4, so the probability of an at least 1 red sample is 1-3.4e-4 = 0.9996595. The probability of at least one non-red sample is the complement of the probability of every sample having at least one red marble, which is (0.9996595)^1000 = 0.7113581 so the complement is 1 - 0.7113581 = 0.28864193.
+
+6. possible yn for D comp with yn[0] = 101, yn[1] = 110, yn[2] = 111:
+[0,0,0], [1,0,0], [0,1,0], [0,0,1], [1,1,0], [1,0,1], [0,1,1], [1,1,1]
+
+a) only one target func has all 1s, 3 have 2 1s, 3 have 1 1
+b) only one target func has all 0s, 3 have have 2 0s, 3 have 1 0
+c.) yns should be [0,0,1] for 101,110,111: only one vector like this. [0,0,0],[1,0,1],[0,1,1] diff in one pos.
+[1,1,1],[1,0,0],[0,1,0] diff in two pos. 
+d.) yns should be [1,1,0] for 101,110,111: only one vec like this. [1,1,1], [1,0,0], [0,1,0] diff in one pos.
+[1,0,1], [0,0,1], [0,1,1] diff in two pos.
+
+hence a-d give the same score.

@@ -1,0 +1,120 @@
+* GENERALIZATION ERROR
+- modified hoeffding: P[|E_{in} (g)-E_{out} (g)| > \epsilon] \le 2Me^{-2\epsilon^2 N}
+
+Let \epsilon = 0.05, 2Me^{-2\epsilon ^2 N} \le 0.03
+
+*Want*:  N
+
+\Rightarrow 0.03 \ge 2Me^{-2\times(0.05)^2 N}
+
+\Rightarrow 0.03 \ge 2Me^{-0.005N}
+
+\Rightarrow 0.03 \div 2M \ge e^{-0.005N}
+
+\Rightarrow log(0.03 \div 2M) \ge -0.005N
+
+\Rightarrow log(0.03) - log(2M) \ge -0.005N
+
+\Rightarrow (log(0.03) - log(2M)) \div -0.005 \ge N
+
+
+*M = 1 :*  839.9410155759854
+
+*M = 10 :*  1300.450341747946
+
+*M = 100 :* 1760.9750527736037
+
+* BREAK POINT
+
+*WANT :* smallest break point for \real^3
+
+
+The break point isn't k = 4 like for the \real^2 case. For the impossible case in
+\real^2 where the points are in a square with the opposite corners with the same
+labels, imagine one set of corners being at a different z value and then you
+will be able to divide the pairs of corners with the plane. The equivalent to
+the square in \real^2 is a pyramid in \real^3 where opposite corners as well as the apex
+are +1 and the rest -1. The situation isn't helped if we lower one set of corners
+in terms of the z coordinate. Thus, the break point is *k = 5*.
+* GROWTH FUNCTION
+*WANT :* growth function m_H(N) st \lfloor u \rfloor is the biggest int \le u, and MCm = 0 when m \gt M. 
+
+*CHOICES :*
+1. 1+N
+2. 1+N+NC2
+3. \sum(i=1;\lfloor \radic N \rfloor) NCi
+4. 2^{\lfloor N/2 \rfloor}
+5. 2^N
+
+
+We note that each growth function m_H(N) _needs_ to be bounded above by \sum(i=0.k-1) NCi if
+there is a break point.
+
+
+- 1 is the growth function for a positive ray.
+-  2 is certainly possible since it's just NC2 + N + 1 where N + 1 is NC1
+and NC0 so it's just the bound where k = 3, aka the bound for positive intervals. 
+- 3 is impossible since the upper bound of the sum depends on N, making the result
+non-polynomial. 
+- 4 is not possible since growth functions without break points are either 2^N or polynomial
+and 4 is neither.
+- 5 is the growth function for a convex set 
+(or any growth function for a hypothesis with no break point.
+
+* FUN WITH INTERVALS
+** 2-interval learning model
+This is the learning model where h: \real \rarr {-1, +1} and h(x) = +1 if the point is within either of
+two arbitrariliy chosen intervals and -1 otherwise.
+
+
+The *smallest break point* of this learning model is *5*. In particular, x o x o x is
+unattainable where x is +1 and o is -1. Lower Ns are shatterable, especially considering
+you can "hide" an interval between two of the data points (or outside them).
+
+
+The *growth function* is deduced similarly to the growth function in the 1-interval case, where
+you choose between N+1 spots in between the data points for the 2 endpoints, hence (N+1)C2. Since
+it's missing the point where both end points are the same, you add 1 so (N+1)C2. These choices are
+still valid for the 2-interval case and thus carry over (these being the case where both end
+points of one interval is the same). Then we need to add the cases where we're picking 4 end
+points from N+1 spots, so we need to add (N+1)C4. So the growth function is thus:
+*(N+1)C4 + (N+1)C2 + 1*.
+
+** M-interval learning model
+The 2-interval learning model couldn't shatter M=5, particularly x o x o x where x is +1
+and o is -1 since to alternate like that, we actually need 3 intervals. Thus, the break
+point occurs when you alternate x's and o's with x's at the endpoints (since you need the
+extra interval for the middle to set it to x). For every x there is an o, and there's one
+extra x that we can't set, so there are M x's, M o's and 1 extra x, thus the smallest
+break point is *2M + 1*.
+
+* CONVEX SETS: THE TRIANGLE
+*Given :* "triangle" learning model with h: \real^2 \rarr {-1, +1}, h(x) = +1 if x lines within
+triangle in plane, -1 otherwise.
+
+*Want :* largest number of points in \real^2 \ni it is shatterable (so, the break point - 1)
+
+
+- this essentially boils down to the 3-interval  problem where each interval is coverable by
+one of the corners of the triangle, except the \real^1 real number line that served as the domain
+of the hypothesis is wrapped around a circle so that after the 7th point the 1st point follows.
+The problem data point which was not shatterable in the 3-interval case was x o x o x o x since
+we actually needed 4 intervals to cover it. This data set is not a problem in this case since
+the 7th and 1st points are adjacent and thus can be covered by the same interval/triangle corner.
+M = 8 proves to be a problem though with x o x o x o x o, since we actually do need 4 intervals
+or 4 corners to cover the xs in this case and thus is not shatterable. Thus, the largest number
+of points in \real^2 that is shatterable is *7*.
+
+* NON-CONVEX SETS: CONCENTRIC CIRCLES
+*Given :*  learning function of two concentric circles in \real^2. H with functions
++1 for a^2 \le x_1^2 + x_2^2 \le b^2 and -1 otherwise. 
+
+
+*Want :* growth function m_H(N)
+
+- this is essentially the same as the 1-interval problem but in 2 dimension with the smaller circle
+being the first end point and the second circle being the second end point. Note that with this
+circle case, you only really have to consider the relative radius from the center of the circles
+for the hypothesis. Doing this, it is clear that this does in fact really reduce to the 1-interval
+problem in \real^1 with the 1-D number line keeping track of radius. Thus the growth function is the same
+as it was in the 1-interval case: *(N+1)C2 +1*.

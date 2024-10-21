@@ -1,0 +1,22 @@
+ERROR AND NOISE
+3. Given:
+   - h hypothesis for deterministic target fn f (h and f binary).
+   - h approximates f with probability mu (let m = mu)
+   - noisy version of f, P(y|x) = { lambda, y = f(x); 1 - lambda, y != f(x)} (let lambda = l)
+   Want:
+   - probability of error that h makes in approximating y.
+
+   The probability that h approx y is P(x)*P(y|x). This is (1-m)*l.
+   So the probability of h agreeing with f and x and y != f(x) is (1-m)*(1-l).
+   The probability of h not agreeing with f at x but yet still y = f(x) is m*l.
+   These two cases make up the probabiliy of error that h makes in approx y so it is:
+   (1-m)*(1-l) + m*l.
+
+4. At what value of l will the performance of h be independent of m?
+
+   At l = 0.5, there is equal chance of y = f(x) and y != f(x), so it doesn't matter what m is. If m = 1
+   and there's a 100% chance h doesn't track f, there still is 50% chance we'll end up with the right y
+   anyways. If m = 0 and there's is a 100% chance h does track f, there is still a 50% chance we'll end up
+   with teh wrong y anyways.
+
+
